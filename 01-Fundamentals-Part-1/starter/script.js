@@ -445,6 +445,8 @@ if (dolphinsAvg === koalasAvg && dolphinsAvg >= 100 && koalasAvg >= 100) {
 
 console.log("=============================")
 
+/*
+
 // The switch Statement
 
 const day = 'friday';
@@ -487,3 +489,4 @@ if (day === 'monday') {
   console.log('Not a valid day!');
 }
 
+*/
