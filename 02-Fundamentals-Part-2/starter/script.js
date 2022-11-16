@@ -160,6 +160,8 @@ checkWinner(dolphinsAvg, koalasAvg)
 
 console.log("=============================")
 
+/*
+
 // Introduction to Arrays
 
 const friend1 = 'Michael';
@@ -199,4 +201,7 @@ console.log(age1, age2, age3);
 
 const ages = [calcAge(years[0]), calcAge(years[1]), calcAge(years[years.length - 1])];
 console.log(ages);
+
+*/
+
 
