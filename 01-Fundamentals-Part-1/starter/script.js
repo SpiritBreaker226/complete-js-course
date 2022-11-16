@@ -174,6 +174,8 @@ console.log("Mark's BMI higher then John's", markHigherBMI)
 
 console.log("=============================")
 
+/*
+
 // Strings and Template Literals
 
 const firstName = 'Jonas';
@@ -201,3 +203,4 @@ console.log(`String
 multiple
 lines`);
 
+*/
