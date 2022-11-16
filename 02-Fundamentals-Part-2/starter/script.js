@@ -13,8 +13,6 @@ if (hasDriversLicense) console.log('I can drive :D');
 // const interface = 'Audio';
 // const private = 534;
 
-*/
-
 // Functions
 
 function logger() {
@@ -38,5 +36,8 @@ const appleOrangeJuice = fruitProcessor(2, 4);
 console.log(appleOrangeJuice);
 
 const num = Number('23');
+
+*/
+
 
 
