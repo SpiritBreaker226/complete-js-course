@@ -489,8 +489,6 @@ if (day === 'monday') {
   console.log('Not a valid day!');
 }
 
-*/
-
 // Statements and Expressions
 
 3 + 4
@@ -503,4 +501,6 @@ if (23 > 10) {
 
 const me = 'Jonas';
 console.log(`I'm ${2037 - 1991} years old ${me}`);
+
+*/
 
