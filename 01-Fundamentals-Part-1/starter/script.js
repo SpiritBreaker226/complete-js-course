@@ -56,7 +56,7 @@ console.log(typeof year);
 
 console.log(typeof null);
 
-*/
+
 
 // let, const and var
 
@@ -73,3 +73,4 @@ job = 'teacher'
 lastName = 'Schmedtmann';
 console.log(lastName);
 
+*/
