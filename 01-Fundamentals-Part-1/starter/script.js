@@ -34,8 +34,6 @@ let myCurrentJob = 'Teacher'
 let job1 = 'Programmer'
 let job2 = 'Teacher'
 
-*/
-
 // Data Types
 
 let javascriptIsFun = true;
@@ -57,3 +55,6 @@ year = 1991;
 console.log(typeof year);
 
 console.log(typeof null);
+
+*/
+
