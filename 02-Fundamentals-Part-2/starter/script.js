@@ -1,5 +1,7 @@
 'use strict'
 
+/*
+
 // Activating Strict Mode
 
 let hasDriversLicense = false;
@@ -10,3 +12,7 @@ if (hasDriversLicense) console.log('I can drive :D');
 
 // const interface = 'Audio';
 // const private = 534;
+
+*/
+
+
