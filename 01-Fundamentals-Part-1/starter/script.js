@@ -227,4 +227,52 @@ console.log(century);
 
 */
 
+// Coding Challenge #2
+
+/*
+Use the BMI example from Challenge #1, and the code you already wrote, and improve it:
+
+1. Print a nice output to the console, saying who has the higher BMI. The message can be either "Mark's BMI is higher than John's!" or "John's BMI is higher than Mark's!"
+2. Use a template literal to include the BMI values in the outputs. Example: "Mark's BMI (28.3) is higher than John's (23.9)!"
+
+HINT: Use an if/else statement 😉
+
+GOOD LUCK 😀
+*/
+
+console.log("Coding Challenge #2")
+
+const markHigherBmi = (isMarkHigherBmi) => (
+  (isMarkHigherBmi) ?
+    "Mark's BMI is higher than John's!"
+  :
+    "John's BMI is higher than Mark's!"
+)
+
+let mark2Mass = 78
+let john2Mass = 92
+let mark2Height = 1.69
+let john2Height = 1.95
+
+let mark2Bmi = mark2Mass / mark2Height ** 2
+let john2Bmi = john2Mass / john2Height ** 2
+
+console.log(`Mark's BMI (${mark2Bmi}) is higher than John's (${john2Bmi})!`)
+console.log(markHigherBmi(mark2Bmi > john2Bmi))
+
+mark2Mass = 95
+john2Mass = 85
+mark2Height = 1.88
+john2Height = 1.76
+
+mark2Bmi = mark2Mass / mark2Height ** 2
+john2Bmi = john2Mass / john2Height ** 2
+
+mark2HigherBMI = mark2Bmi > john2Bmi
+
+console.log(`Mark's BMI (${mark2Bmi}) is higher than John's (${john2Bmi})!`)
+console.log(markHigherBmi(mark2Bmi > john2Bmi))
+
+console.log("=============================")
+
 
