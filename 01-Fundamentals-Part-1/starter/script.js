@@ -275,6 +275,8 @@ console.log(markHigherBmi(mark2Bmi > john2Bmi))
 
 console.log("=============================")
 
+/*
+
 // Type Conversion and Coercion
 
 // type conversion
@@ -295,4 +297,7 @@ console.log('23' / '2');
 let n = '1' + 1; // '11'
 n = n - 1;
 console.log(n);
+
+*/
+
 
