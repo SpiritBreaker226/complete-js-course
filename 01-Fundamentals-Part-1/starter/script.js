@@ -105,8 +105,6 @@ const isFullAge = ageSarah >= 18;
 
 console.log(now - 1991 > now - 2018);
 
-*/
-
 // Operator Precedence
 
 // MDA  Operator Precedence
@@ -124,3 +122,5 @@ console.log(x, y);
 
 const averageAge = (ageJonas + ageSarah) / 2;
 console.log(ageJonas, ageSarah, averageAge);
+
+*/
