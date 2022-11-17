@@ -9,7 +9,7 @@ if (xy === 23) {
 }
 
 const calcAge = birthYear => 2037 - birthYear;
-*/
+
 
 // Using Google, StackOverflow and MDN
 
@@ -74,3 +74,5 @@ const calcTempAmplitudeNew = function (t1, t2) {
 };
 const amplitudeNew = calcTempAmplitudeNew([3, 5, 1], [9, 0, 5]);
 console.log(amplitudeNew);
+
+*/
