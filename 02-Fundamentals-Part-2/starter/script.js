@@ -276,6 +276,8 @@ console.log('totals', totals)
 
 console.log("=============================")
 
+/*
+
 // Introduction to Objects
 
 const jonasArray = [
@@ -293,3 +295,5 @@ const jonas = {
   job: 'teacher',
   friends: ['Michael', 'Peter', 'Steven']
 };
+
+*/
