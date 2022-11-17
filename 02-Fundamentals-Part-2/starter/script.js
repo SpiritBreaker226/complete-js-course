@@ -296,8 +296,6 @@ const jonas = {
   friends: ['Michael', 'Peter', 'Steven']
 };
 
-*/
-
 // Dot vs. Bracket Notation
 
 const jonas = {
@@ -333,5 +331,7 @@ console.log(jonas);
 // Challenge
 // "Jonas has 3 friends, and his best friend is called Michael"
 console.log(`${jonas.firstName} has ${jonas.friends.length} friends, and his best friend is called ${jonas.friends[0]}`);
+
+*/
 
 
