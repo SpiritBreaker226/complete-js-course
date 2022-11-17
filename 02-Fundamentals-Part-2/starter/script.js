@@ -420,6 +420,8 @@ if (mark.bmi > john.bmi) {
 
 console.log("=============================")
 
+/*
+
 // Iteration: The for Loop
 
 // console.log('Lifting weights repetition 1 🏋️‍♀️');
@@ -437,4 +439,8 @@ console.log("=============================")
 for (let rep = 1; rep <= 30; rep++) {
   console.log(`Lifting weights repetition ${rep} 🏋️‍♀️`);
 }
+
+*/
+
+
 
