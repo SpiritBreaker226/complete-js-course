@@ -440,7 +440,7 @@ for (let rep = 1; rep <= 30; rep++) {
   console.log(`Lifting weights repetition ${rep} 🏋️‍♀️`);
 }
 
-*/
+
 
 // Looping Arrays, Breaking and Continuing
 
@@ -494,4 +494,4 @@ for (let i = 0; i < jonas.length; i++) {
   console.log(jonas[i], typeof jonas[i]);
 }
 
-
+*/
