@@ -34,6 +34,12 @@ document.querySelector('.check').addEventListener('click', e => {
     return;
   }
 
+  if (score === 0) {
+    document.querySelector('.message').textContent = '💥 You lost the game!';
+
+    return;
+  }
+
   document.querySelector('.message').textContent =
     guess > secretNumber ? '📈 Too High!' : '📉 Too Low!';
 
