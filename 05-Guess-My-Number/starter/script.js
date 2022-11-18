@@ -13,6 +13,7 @@ document.querySelector('.guess').value = 23;
 */
 
 const secretNumber = Math.trunc(Math.random() * 20) + 1;
+let score = 20;
 
 document.querySelector('.number').textContent = secretNumber;
 
@@ -35,4 +36,8 @@ document.querySelector('.check').addEventListener('click', e => {
 
   document.querySelector('.message').textContent =
     guess > secretNumber ? '📈 Too High!' : '📉 Too Low!';
+
+  score--;
+
+  document.querySelector('.score').textContent = score;
 });
