@@ -12,6 +12,10 @@ console.log(document.querySelector('.guess').value);
 document.querySelector('.guess').value = 23;
 */
 
+const secretNumber = Math.trunc(Math.random() * 20) + 1;
+
+document.querySelector('.number').textContent = secretNumber;
+
 document.querySelector('.check').addEventListener('click', e => {
   const guess = Number(document.querySelector('.guess').value);
 
