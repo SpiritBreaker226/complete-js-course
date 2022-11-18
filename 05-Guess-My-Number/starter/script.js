@@ -28,12 +28,17 @@ document.querySelector('.check').addEventListener('click', e => {
     return;
   }
 
+  // When they win
   if (guess === secretNumber) {
     document.querySelector('.message').textContent = '🎉 Correct Number!';
+
+    document.querySelector('body').style.backgroundColor = '#60b347';
+    document.querySelector('.number').style.width = '30rem';
 
     return;
   }
 
+  // Game Over!
   if (score === 0) {
     document.querySelector('.message').textContent = '💥 You lost the game!';
 
