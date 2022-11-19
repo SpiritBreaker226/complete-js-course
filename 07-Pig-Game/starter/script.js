@@ -18,6 +18,7 @@ const btnHold = document.querySelector('.btn--hold');
 const scores = [0, 0];
 let currentScore = 0;
 let activePlayer = 0;
+let isPlaying = true;
 
 score0El.textContent = 0;
 score1El.textContent = 0;
@@ -36,6 +37,10 @@ const switchPlayer = () => {
 
 // Rolling dice functionality
 btnRollDice.addEventListener('click', () => {
+  if (!isPlaying) {
+    return;
+  }
+
   // 1. Generating a random dice roll
   const dice = Math.trunc(Math.random() * 6) + 1;
 
@@ -59,6 +64,10 @@ btnRollDice.addEventListener('click', () => {
 });
 
 btnHold.addEventListener('click', () => {
+  if (!isPlaying) {
+    return;
+  }
+
   // 1. Add current score to active player's score
   scores[activePlayer] += currentScore;
   document.querySelector(`#score--${activePlayer}`).textContent =
@@ -66,6 +75,10 @@ btnHold.addEventListener('click', () => {
 
   // 2. CHeck if player is 100
   if (scores[activePlayer] >= 100) {
+    isPlaying = false;
+
+    diceEl.classList.add('hidden');
+
     // end gam
     document
       .querySelector(`.player--${activePlayer}`)
