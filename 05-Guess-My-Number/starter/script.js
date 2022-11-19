@@ -12,7 +12,12 @@ console.log(document.querySelector('.guess').value);
 document.querySelector('.guess').value = 23;
 */
 
-let secretNumber = Math.trunc(Math.random() * 20) + 1;
+const displayMessage = message =>
+  (document.querySelector('.message').textContent = message);
+
+const randomNumber = () => Math.trunc(Math.random() * 20) + 1;
+
+let secretNumber = randomNumber();
 let score = 20;
 let hightscore = 0;
 
@@ -20,14 +25,14 @@ document.querySelector('.check').addEventListener('click', e => {
   const guess = Number(document.querySelector('.guess').value);
 
   if (!guess) {
-    document.querySelector('.message').textContent = '⛔️ No number!';
+    displayMessage('⛔️ No number!');
 
     return;
   }
 
   // When they win
   if (guess === secretNumber) {
-    document.querySelector('.message').textContent = '🎉 Correct Number!';
+    displayMessage('🎉 Correct Number!');
 
     document.querySelector('.number').textContent = secretNumber;
 
@@ -44,13 +49,13 @@ document.querySelector('.check').addEventListener('click', e => {
 
   // Game Over!
   if (score === 0) {
-    document.querySelector('.message').textContent = '💥 You lost the game!';
+    displayMessage('💥 You lost the game!');
 
     return;
   }
 
-  document.querySelector('.message').textContent =
-    guess > secretNumber ? '📈 Too High!' : '📉 Too Low!';
+  const hint = guess > secretNumber ? '📈 Too High!' : '📉 Too Low!';
+  displayMessage(hint);
 
   score--;
 
@@ -71,11 +76,11 @@ GOOD LUCK 😀
 */
 
 document.querySelector('.again').addEventListener('click', () => {
-  secretNumber = Math.trunc(Math.random() * 20) + 1;
+  secretNumber = randomNumber();
   score = 20;
 
   document.querySelector('.score').textContent = score;
-  document.querySelector('.message').textContent = 'Start guessing...';
+  displayMessage('Start guessing...');
   document.querySelector('.number').textContent = '?';
 
   document.querySelector('.guess').value = '';
