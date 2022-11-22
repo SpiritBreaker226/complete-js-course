@@ -41,8 +41,6 @@ calcAge(1991);
 // console.log(age);
 // printAge();
 
-*/
-
 // Hoisting and TDZ in Practice
 
 // Variables
@@ -87,3 +85,5 @@ const z = 3;
 console.log(x === window.x);
 console.log(y === window.y);
 console.log(z === window.z);
+
+*/
