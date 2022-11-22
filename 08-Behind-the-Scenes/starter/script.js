@@ -169,8 +169,6 @@ var addArrow = (a, b) => {
 };
 addArrow(2, 5, 8);
 
-*/
-
 // Objects vs. primitives
 
 let age = 30;
@@ -187,3 +185,5 @@ const friend = me;
 friend.age = 27;
 console.log('Friend:', friend);
 console.log('Me', me);
+
+*/
