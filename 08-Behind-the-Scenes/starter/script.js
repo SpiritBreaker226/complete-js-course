@@ -121,8 +121,6 @@ matilda.calcAge();
 const f = jonas.calcAge;
 f();
 
-*/
-
 // Regular Functions vs. Arrow Functions
 
 // var firstName = 'Matilda';
@@ -170,3 +168,5 @@ var addArrow = (a, b) => {
   return a + b;
 };
 addArrow(2, 5, 8);
+
+*/
