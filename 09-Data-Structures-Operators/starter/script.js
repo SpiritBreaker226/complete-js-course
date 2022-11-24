@@ -297,3 +297,85 @@ for (const [time, event] of gameEvents) {
 }
 
 console.log('=============================');
+
+// Coding Challenge #4
+
+/*
+Write a program that receives a list of variable names written in underscore_case and convert them to camelCase.
+
+The input will come from a textarea inserted into the DOM (see code below), and conversion will happen when the button is pressed.
+
+THIS TEST DATA (pasted to textarea)
+underscore_case
+ first_name
+Some_Variable
+  calculate_AGE
+delayed_departure
+
+SHOULD PRODUCE THIS OUTPUT (5 separate console.log outputs)
+underscoreCase      ✅
+firstName           ✅✅
+someVariable        ✅✅✅
+calculateAge        ✅✅✅✅
+delayedDeparture    ✅✅✅✅✅
+
+HINT 1: Remember which character defines a new line in the textarea 😉
+HINT 2: The solution only needs to work for a variable made out of 2 words, like a_b
+HINT 3: Start without worrying about the ✅. Tackle that only after you have the variable name conversion working 😉
+HINT 4: This challenge is difficult on purpose, so start watching the solution in case you're stuck. Then pause and continue!
+
+Afterwards, test with your own test data!
+
+GOOD LUCK 😀
+*/
+
+document.body.append(document.createElement('textarea'));
+document.body.append(document.createElement('button'));
+
+console.log('Coding Challenge #4');
+
+const normalizeString = word => word.toLowerCase().trim().split('_');
+
+const findLongestWord = words => {
+  let longestWord = 0;
+
+  words.forEach(word => {
+    const newWords = normalizeString(word).join('');
+
+    if (newWords.length > longestWord) {
+      longestWord = newWords.length;
+    }
+  });
+
+  return longestWord;
+};
+
+const toCapitalizeFirstLetter = word =>
+  `${word[0].toUpperCase()}${word.slice(1)}`;
+
+const toCamelCase = words => {
+  const camelCase = [words[0]];
+
+  for (let index = 1; index < words.length; index++) {
+    camelCase.push(toCapitalizeFirstLetter(words[index]));
+  }
+
+  return camelCase.join('');
+};
+
+document.querySelector('button').addEventListener('click', function () {
+  const text = document.querySelector('textarea').value.trim();
+  const rows = text.split('\n');
+
+  const numberOfChar = findLongestWord(rows);
+
+  rows.forEach((row, index) => {
+    const words = normalizeString(row);
+
+    console.log(
+      `${toCamelCase(words).padEnd(numberOfChar + 4)}${'✅'.repeat(index + 1)}`
+    );
+  });
+});
+
+console.log('=============================');
