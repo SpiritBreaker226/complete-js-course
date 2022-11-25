@@ -87,7 +87,7 @@ const calcDisplayBalance = movements => {
   labelBalance.textContent = `${balance}€`;
 };
 
-const calcDisplaySummary = (movements, interestRate) => {
+const calcDisplaySummary = ({ movements, interestRate }) => {
   const incomes = movements
     .filter(movement => movement > 0)
     .reduce((prevDeposit, deposit) => prevDeposit + deposit, 0);
@@ -153,7 +153,7 @@ btnLogin.addEventListener('click', e => {
     calcDisplayBalance(currentAccount.movements);
 
     // Display Summary
-    calcDisplaySummary(currentAccount.movements, currentAccount.interestRate);
+    calcDisplaySummary(currentAccount);
   }
 });
 
