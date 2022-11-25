@@ -71,7 +71,7 @@ const displayMovements = movements => {
     const html = `
       <div class="movements__row">
         <div class="movements__type movements__type--${type}">${index} ${type}</div>
-        <div class="movements__value">${movement}</div>
+        <div class="movements__value">${movement}€</div>
       </div>`;
 
     containerMovements.insertAdjacentHTML('afterbegin', html);
@@ -86,7 +86,7 @@ const calcDisplayBalance = movements => {
     0
   );
 
-  labelBalance.textContent = `${balance} EUR`;
+  labelBalance.textContent = `${balance}€`;
 };
 
 calcDisplayBalance(account1.movements);
