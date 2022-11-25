@@ -78,13 +78,13 @@ const displayMovements = movements => {
   });
 };
 
-const calcDisplayBalance = movements => {
-  const balance = movements.reduce(
+const calcDisplayBalance = account => {
+  account.balance = account.movements.reduce(
     (account, movement) => account + movement,
     0
   );
 
-  labelBalance.textContent = `${balance}€`;
+  labelBalance.textContent = `${account.balance}€`;
 };
 
 const calcDisplaySummary = ({ movements, interestRate }) => {
@@ -150,7 +150,7 @@ btnLogin.addEventListener('click', e => {
     displayMovements(currentAccount.movements);
 
     // Display Balance
-    calcDisplayBalance(currentAccount.movements);
+    calcDisplayBalance(currentAccount);
 
     // Display Summary
     calcDisplaySummary(currentAccount);
