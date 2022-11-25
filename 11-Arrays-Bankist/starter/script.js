@@ -91,6 +91,30 @@ const calcDisplayBalance = movements => {
 
 calcDisplayBalance(account1.movements);
 
+const calcDisplaySummary = (movements, interestRate) => {
+  const incomes = movements
+    .filter(movement => movement > 0)
+    .reduce((prevDeposit, deposit) => prevDeposit + deposit, 0);
+
+  labelSumIn.textContent = `${incomes}€`;
+
+  const out = movements
+    .filter(movement => movement < 0)
+    .reduce((prevWithdrawn, withdrawn) => prevWithdrawn + withdrawn, 0);
+
+  labelSumOut.textContent = `${Math.abs(out)}€`;
+
+  const interest = movements
+    .filter(movement => movement > 0)
+    .map(deposit => (deposit * interestRate) / 100)
+    .filter(interest => interest >= 1)
+    .reduce((prevInterest, interest) => prevInterest + interest, 0);
+
+  labelSumInterest.textContent = `${interest}€`;
+};
+
+calcDisplaySummary(account1.movements, account1.interestRate);
+
 const createUsernames = accounts => {
   accounts.forEach(account => {
     account.username = account.owner
