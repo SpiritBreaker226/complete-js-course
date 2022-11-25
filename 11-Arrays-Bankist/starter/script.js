@@ -121,19 +121,19 @@ const createUsernames = accounts => {
 
 createUsernames(accounts);
 
+const findAccount = username =>
+  accounts.find(account => account.username === username);
+
 // Event handler
+
 let currentAccount;
 
 btnLogin.addEventListener('click', e => {
   e.preventDefault();
 
-  currentAccount = accounts.find(
-    ({ username, pin }) =>
-      username === inputLoginUsername.value &&
-      pin === Number(inputLoginPin.value)
-  );
+  currentAccount = findAccount(inputLoginUsername.value);
 
-  if (currentAccount) {
+  if (currentAccount?.pin === Number(inputLoginPin.value)) {
     const firstName = currentAccount.owner.split(' ')[0];
 
     // Display UI & Message
