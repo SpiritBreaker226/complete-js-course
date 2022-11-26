@@ -189,6 +189,38 @@ btnTransfer.addEventListener('click', e => {
   }
 });
 
+btnClose.addEventListener('click', e => {
+  e.preventDefault();
+
+  if (
+    currentAccount.username === inputCloseUsername.value &&
+    currentAccount.pin === Number(inputClosePin.value)
+  ) {
+    const closeAccountIndex = accounts.findIndex(
+      account => account.username === currentAccount.username
+    );
+
+    // remove account from accounts
+    accounts.splice(closeAccountIndex, 1);
+
+    // update UI
+    containerApp.style.opacity = 0;
+    labelWelcome.textContent = 'Log in to get started';
+
+    containerMovements.innerHTML = '';
+    labelBalance.innerHTML = '';
+    labelSumIn.innerHTML = '';
+    labelSumOut.innerHTML = '';
+    labelSumInterest.innerHTML = '';
+  }
+
+  // Clear input fields
+  inputCloseUsername.value = '';
+  inputCloseUsername.blur();
+  inputClosePin.value = '';
+  inputClosePin.blur();
+});
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
