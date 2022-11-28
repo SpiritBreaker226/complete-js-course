@@ -170,7 +170,7 @@ btnLogin.addEventListener('click', e => {
 
   currentAccount = findAccount(inputLoginUsername.value);
 
-  if (currentAccount?.pin === Number(inputLoginPin.value)) {
+  if (currentAccount?.pin === +inputLoginPin.value) {
     const firstName = currentAccount.owner.split(' ')[0];
 
     // Display UI & Message
@@ -191,7 +191,7 @@ btnLogin.addEventListener('click', e => {
 btnLoan.addEventListener('click', e => {
   e.preventDefault();
 
-  const amount = Number(inputLoanAmount.value);
+  const amount = +inputLoanAmount.value;
   const canRequest = currentAccount.movements.some(
     movement => movement >= amount * 0.1
   );
@@ -211,7 +211,7 @@ btnLoan.addEventListener('click', e => {
 btnTransfer.addEventListener('click', e => {
   e.preventDefault();
 
-  const amount = Number(inputTransferAmount.value);
+  const amount = +inputTransferAmount.value;
   const receiverAccount = findAccount(inputTransferTo.value);
 
   // Clear input fields
@@ -240,7 +240,7 @@ btnClose.addEventListener('click', e => {
 
   if (
     currentAccount.username === inputCloseUsername.value &&
-    currentAccount.pin === Number(inputClosePin.value)
+    currentAccount.pin === +inputClosePin.value
   ) {
     const closeAccountIndex = accounts.findIndex(
       account => account.username === currentAccount.username
