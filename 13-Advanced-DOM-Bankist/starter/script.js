@@ -33,6 +33,7 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
+/*
 // Selecting, Creating, and Deleting Elements
 
 // Selecting elements
@@ -71,3 +72,4 @@ document
     // message.remove();
     message.parentElement.removeChild(message);
   });
+*/
