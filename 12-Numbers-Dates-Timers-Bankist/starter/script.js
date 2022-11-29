@@ -84,23 +84,13 @@ const inputClosePin = document.querySelector('.form__input--pin');
 const calcDaysPassed = (date1, date2) =>
   Math.round(Math.abs(date2 - date1) / (1000 * 60 * 60 * 24));
 
-const getDateParts = date => {
-  const day = `${date.getDate()}`.padStart(2, 0);
-  const month = `${date.getMonth() + 1}`.padStart(2, 0);
-  const year = date.getFullYear();
-  const hour = `${date.getHours()}`.padStart(2, 0);
-  const minutes = `${date.getMinutes()}`.padStart(2, 0);
+const getDateParts = (locale, date, options) => {
+  const dateTimeOptions = options ?? {};
 
-  return {
-    day,
-    month,
-    year,
-    hour,
-    minutes,
-  };
+  return new Intl.DateTimeFormat(locale, dateTimeOptions).format(date);
 };
 
-const formatMovements = date => {
+const formatMovements = (locale, date) => {
   const daysPassed = calcDaysPassed(new Date(), date);
 
   if (daysPassed === 0) {
@@ -111,12 +101,13 @@ const formatMovements = date => {
     return `${daysPassed} days ago`;
   }
 
-  const { day, month, year } = getDateParts(date);
-
-  return `${day}/${month}/${year}`;
+  return getDateParts(locale, date);
 };
 
-const displayMovements = ({ movements, movementsDates }, isSort = false) => {
+const displayMovements = (
+  { locale, movements, movementsDates },
+  isSort = false
+) => {
   containerMovements.innerHTML = '';
 
   const movs = isSort
@@ -132,7 +123,10 @@ const displayMovements = ({ movements, movementsDates }, isSort = false) => {
     // please note that movementsDates[index] is not correct as the date does
     // not follow the transaction when sorted. this should be in an object with
     // the movement amount however, this is only practice.
-    const displayDate = formatMovements(new Date(movementsDates[index]));
+    const displayDate = formatMovements(
+      locale,
+      new Date(movementsDates[index])
+    );
 
     const html = `
       <div class="movements__row">
@@ -218,9 +212,19 @@ btnLogin.addEventListener('click', e => {
     containerApp.style.opacity = 100;
     labelWelcome.textContent = `Welcome, back, ${firstName}`;
 
-    const { day, month, year, hour, minutes } = getDateParts(new Date());
+    const intlDateOption = {
+      month: 'numeric',
+      day: 'numeric',
+      year: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+    };
 
-    labelDate.textContent = `${day}/${month}/${year} ${hour}:${minutes}`;
+    labelDate.textContent = getDateParts(
+      currentAccount.locale,
+      new Date(),
+      intlDateOption
+    );
 
     // Clear input fields
     inputLoginUsername.value = '';
