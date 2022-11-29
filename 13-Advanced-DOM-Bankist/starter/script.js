@@ -1,12 +1,16 @@
 'use strict';
 
-///////////////////////////////////////
-// Modal window
+// Page Scrolling
+
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
 
 const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
+
+// Modal window
 
 const openModal = function (e) {
   e.preventDefault();
@@ -31,6 +35,43 @@ document.addEventListener('keydown', function (e) {
   if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
     closeModal();
   }
+});
+
+///////////////////////////////////////
+// Page Scrolling
+
+btnScrollTo.addEventListener('click', () => {
+  // old school 👨🏻‍🏫
+
+  // is base on the view point hof where the user is scroll
+  // const s1coords = section1.getBoundingClientRect();
+
+  //  to get the current scroll which you not use
+  // window. pageXOffset and  window. pageYOffset
+
+  // the Viewpoint client heigh and width is base on the device the user is using
+  // document.documentElement.clientHeight and
+  // document.documentElement.clientWidth
+
+  // Scrolling
+  // The s1coords.top needs to have a different when the user is not
+  // right at the top of the page as JavaScript offset for it does not change
+  // to reflect this so we will have to add window.PageYOffset to the s1coords so that it equals
+  // to the top of the window thus JavaScript is then able to do the calculations
+  // properly
+  // We also did it for X just in case that is needed
+
+  /*
+  window.scrollTo({
+    left: s1coords.left + window.pageXOffset,
+    top: s1coords.top + window.pageYOffset,
+    // behavior tells JavaScript how to scroll to a location
+    behavior: 'smooth',
+  });
+  */
+
+  // new school
+  section1.scrollIntoView({ behavior: 'smooth' });
 });
 
 /*
