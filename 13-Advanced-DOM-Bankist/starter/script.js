@@ -72,7 +72,6 @@ document
     // message.remove();
     message.parentElement.removeChild(message);
   });
-*/
 
 // Styles, Attributes and Classes
 
@@ -121,3 +120,5 @@ logo.classList.contains('c'); // not includes
 
 // Don't use
 logo.clasName = 'jonas';
+
+*/
