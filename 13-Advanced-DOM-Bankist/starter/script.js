@@ -544,8 +544,6 @@ console.log(h1.parentElement.children);
   if (el !== h1) el.style.transform = 'scale(0.5)';
 });
 
-*/
-
 // Lifecycle DOM Events
 
 document.addEventListener('DOMContentLoaded', function (e) {
@@ -561,3 +559,5 @@ window.addEventListener('beforeunload', function (e) {
   console.log(e);
   e.returnValue = '';
 });
+
+*/
