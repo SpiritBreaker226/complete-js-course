@@ -162,8 +162,6 @@ logo.classList.contains('c'); // not includes
 // Don't use
 logo.clasName = 'jonas';
 
-*/
-
 // Types of Events and Event Handlers
 
 const h1 = document.querySelector('h1');
@@ -179,3 +177,5 @@ setTimeout(() => h1.removeEventListener('mouseenter', alertH1), 3000);
 // h1.onmouseenter = function (e) {
 //   alert('onmouseenter: Great! You are reading the heading :D');
 // };
+
+*/
