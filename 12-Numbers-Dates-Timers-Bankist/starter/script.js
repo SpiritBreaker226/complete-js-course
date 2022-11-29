@@ -218,12 +218,61 @@ const updateUI = account => {
   calcDisplaySummary(account);
 };
 
+const signOut = () => {
+  containerApp.style.opacity = 0;
+  labelWelcome.textContent = 'Log in to get started';
+
+  containerMovements.innerHTML = '';
+  labelBalance.innerHTML = '';
+  labelSumIn.innerHTML = '';
+  labelSumOut.innerHTML = '';
+  labelSumInterest.innerHTML = '';
+};
+
+const setLogOutTimer = () => {
+  // checks if there is
+  // if so then clear before creating a new one
+  if (timer) {
+    clearInterval(timer);
+  }
+
+  // Set time to 5 minutes
+  let time = 300;
+  const tick = () => {
+    const min = `${Math.trunc(time / 60)}`.padStart(2, 0);
+    const sec = `${time % 60}`.padStart(2, 0);
+
+    // In each  call, print the remaining time to UO
+    labelTimer.textContent = `${min}:${sec}`;
+
+    // On 0 second, stop timer & sign out
+    if (time === 0) {
+      // sign out
+      signOut();
+
+      // clear Interval
+      clearInterval(timer);
+    }
+
+    // decrease 1s
+    time--;
+  };
+
+  // calls the timer first to start it off
+  // so that it looks like it starts as the user logins and not a second less
+  tick();
+
+  // Call the timer every second
+  return setInterval(tick, 1000);
+};
+
 const findAccount = username =>
   accounts.find(account => account.username === username);
 
 // Event handler
 
 let currentAccount;
+let timer;
 
 btnLogin.addEventListener('click', e => {
   e.preventDefault();
@@ -257,6 +306,8 @@ btnLogin.addEventListener('click', e => {
     inputLoginPin.value = '';
     inputLoginPin.blur();
 
+    timer = setLogOutTimer();
+
     // Update UI
     updateUI(currentAccount);
   }
@@ -270,17 +321,21 @@ btnLoan.addEventListener('click', e => {
     movement => movement >= amount * 0.1
   );
 
-  if (amount > 0 && canRequest) {
-    // Add movement
-    currentAccount.movements.push(amount);
-    currentAccount.movementsDates.push(new Date().toISOString());
+  setTimeout(() => {
+    if (amount > 0 && canRequest) {
+      // Add movement
+      currentAccount.movements.push(amount);
+      currentAccount.movementsDates.push(new Date().toISOString());
 
-    // Update UI
-    updateUI(currentAccount);
-  }
+      timer = setLogOutTimer();
 
-  inputLoanAmount.blur();
-  inputLoanAmount.value = '';
+      // Update UI
+      updateUI(currentAccount);
+    }
+
+    inputLoanAmount.blur();
+    inputLoanAmount.value = '';
+  }, 2500);
 });
 
 btnTransfer.addEventListener('click', e => {
@@ -309,6 +364,8 @@ btnTransfer.addEventListener('click', e => {
     currentAccount.movementsDates.push(new Date().toISOString());
     receiverAccount.movementsDates.push(new Date().toISOString());
 
+    timer = setLogOutTimer();
+
     // Update UI
     updateUI(currentAccount);
   }
@@ -329,14 +386,7 @@ btnClose.addEventListener('click', e => {
     accounts.splice(closeAccountIndex, 1);
 
     // update UI
-    containerApp.style.opacity = 0;
-    labelWelcome.textContent = 'Log in to get started';
-
-    containerMovements.innerHTML = '';
-    labelBalance.innerHTML = '';
-    labelSumIn.innerHTML = '';
-    labelSumOut.innerHTML = '';
-    labelSumInterest.innerHTML = '';
+    signOut();
   }
 
   // Clear input fields
