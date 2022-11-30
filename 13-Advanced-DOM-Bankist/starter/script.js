@@ -1,6 +1,6 @@
 'use strict';
 
-// Page Scrolling
+// Variables
 
 const btnScrollTo = document.querySelector('.btn--scroll-to');
 const section1 = document.querySelector('#section--1');
@@ -9,6 +9,10 @@ const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
+
+const tabs = document.querySelectorAll('.operations__tab');
+const tabsContents = document.querySelectorAll('.operations__content');
+const tabsContainer = document.querySelector('.operations__tab-container');
 
 // Modal window
 
@@ -101,6 +105,35 @@ document.querySelector('.nav__links').addEventListener('click', e => {
 
     document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
   }
+});
+
+// Tabbed Component
+
+tabsContainer.addEventListener('click', e => {
+  e.preventDefault();
+
+  const clicked = e.target.closest('.operations__tab');
+
+  if (!clicked) {
+    return;
+  }
+
+  // Active tab
+  tabs.forEach(tab => {
+    tab.classList.remove('operations__tab--active');
+  });
+
+  clicked.classList.add('operations__tab--active');
+
+  // Active content area
+
+  tabsContents.forEach(tabsContent => {
+    tabsContent.classList.remove('operations__content--active');
+  });
+
+  document
+    .querySelector(`.operations__content--${clicked.dataset.tab}`)
+    .classList.add('operations__content--active');
 });
 
 /*
