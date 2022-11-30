@@ -8,6 +8,10 @@ const section1 = document.querySelector('#section--1');
 
 const imageTargets = document.querySelectorAll('img[data-src]');
 
+const slides = document.querySelectorAll('.slide');
+const btnSliderLeft = document.querySelector('.slider__btn--left');
+const btnSliderRight = document.querySelector('.slider__btn--right');
+
 const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
@@ -283,6 +287,46 @@ const imgObserver = new IntersectionObserver(loadImg, {
 });
 
 imageTargets.forEach(image => imgObserver.observe(image));
+
+// Slider
+
+let currentSlide = 0;
+const maxSlides = slides.length - 1;
+
+const goToSlide = slideNumber => {
+  slides.forEach((slide, index) => {
+    slide.style.transform = `translateX(${(index - slideNumber) * 100}%)`;
+  });
+};
+
+const nextSlide = () => {
+  currentSlide++;
+
+  if (currentSlide > maxSlides) {
+    currentSlide = 0;
+  }
+
+  goToSlide(currentSlide);
+};
+
+const prevSlide = () => {
+  currentSlide--;
+
+  if (currentSlide < 0) {
+    currentSlide = maxSlides;
+  }
+
+  goToSlide(currentSlide);
+};
+
+goToSlide(0);
+
+slides.forEach((slide, index) => {
+  slide.style.transform = `translateX(${index * 100}%)`;
+});
+
+btnSliderLeft.addEventListener('click', prevSlide);
+btnSliderRight.addEventListener('click', nextSlide);
 
 /*
 // Selecting, Creating, and Deleting Elements
