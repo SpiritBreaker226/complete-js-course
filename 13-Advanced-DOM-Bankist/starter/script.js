@@ -291,8 +291,12 @@ imageTargets.forEach(image => imgObserver.observe(image));
 
 // Slider
 
+// Slider - Variables
+
 let currentSlide = 0;
 const maxSlides = slides.length - 1;
+
+// Slider - Functions
 
 const createDots = () => {
   slides.forEach((_, index) => {
@@ -340,12 +344,18 @@ const prevSlide = () => {
   goToSlide(currentSlide);
 };
 
-createDots();
-goToSlide(0);
+const init = () => {
+  createDots();
+  goToSlide(0);
 
-slides.forEach((slide, index) => {
-  slide.style.transform = `translateX(${index * 100}%)`;
-});
+  slides.forEach((slide, index) => {
+    slide.style.transform = `translateX(${index * 100}%)`;
+  });
+};
+
+init();
+
+// Slider - Events
 
 btnSliderLeft.addEventListener('click', prevSlide);
 btnSliderRight.addEventListener('click', nextSlide);
