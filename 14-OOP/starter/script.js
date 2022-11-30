@@ -146,6 +146,8 @@ mercedes.brake();
 
 console.log('=============================');
 
+/*
+
 // ES6 Classes
 
 // Class expression
@@ -207,3 +209,5 @@ jessica.greet();
 
 const walter = new PersonCl('Walter White', 1965);
 // PersonCl.hey();
+
+*/
