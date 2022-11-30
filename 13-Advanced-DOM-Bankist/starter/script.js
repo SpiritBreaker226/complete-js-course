@@ -14,6 +14,7 @@ const tabs = document.querySelectorAll('.operations__tab');
 const tabsContents = document.querySelectorAll('.operations__content');
 const tabsContainer = document.querySelector('.operations__tab-container');
 
+const header = document.querySelector('.header');
 const nav = document.querySelector('.nav');
 
 // Modal window
@@ -197,12 +198,36 @@ const obsOptions = {
   // callback is activated. Its by percentage.
   // can have multiple thresholds by using an array
   threshold: [0, 0.2],
+  // adds to the root of when it can activated minus means outside the root area
+  rootMargin: '-90px',
 };
 const observer = new IntersectionObserver(obsCallback, obsOptions);
 
 observer.observe(section1);
 
 */
+
+const navHeight = nav.getBoundingClientRect().height;
+
+const stickNav = entries => {
+  const [entry] = entries;
+
+  if (!entry.isIntersecting) {
+    nav.classList.add('sticky');
+  } else {
+    nav.classList.remove('sticky');
+  }
+};
+const stickNavOption = {
+  root: null,
+  threshold: 0,
+  // this is so that the line of the section and the nav a line before
+  // displaying so that it looks nice
+  rootMargin: `-${navHeight}px`,
+};
+
+const headerObserver = new IntersectionObserver(stickNav, stickNavOption);
+headerObserver.observe(header);
 
 /*
 // Selecting, Creating, and Deleting Elements
