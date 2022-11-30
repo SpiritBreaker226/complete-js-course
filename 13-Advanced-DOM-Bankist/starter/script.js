@@ -6,6 +6,8 @@ const btnScrollTo = document.querySelector('.btn--scroll-to');
 const allSections = document.querySelectorAll('.section');
 const section1 = document.querySelector('#section--1');
 
+const imageTargets = document.querySelectorAll('img[data-src]');
+
 const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
@@ -252,6 +254,35 @@ allSections.forEach(section => {
   section.classList.add('section--hidden');
   sectionObserver.observe(section);
 });
+
+// Lazy Loading Images
+
+const loadImg = (entries, observer) => {
+  const [entry] = entries;
+
+  if (!entry.isIntersecting) {
+    return;
+  }
+
+  // replace src with data-src
+  entry.target.src = entry.target.dataset.src;
+
+  // we need to wait until the image has been loaded
+  // first before removing the placeholder
+  entry.target.addEventListener('load', () => {
+    entry.target.classList.remove('lazy-img');
+  });
+
+  observer.unobserve(entry.target);
+};
+
+const imgObserver = new IntersectionObserver(loadImg, {
+  root: null,
+  threshold: 0,
+  rootMargin: '200px',
+});
+
+imageTargets.forEach(image => imgObserver.observe(image));
 
 /*
 // Selecting, Creating, and Deleting Elements
