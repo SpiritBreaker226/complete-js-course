@@ -60,8 +60,6 @@ console.log(jonas.species, matilda.species);
 console.log(jonas.hasOwnProperty('firstName'));
 console.log(jonas.hasOwnProperty('species'));
 
- */
-
 // Prototypal Inheritance on Built-In Objects
 
 console.log(jonas.__proto__);
@@ -85,3 +83,5 @@ console.log(arr.unique());
 
 const h1 = document.querySelector('h1');
 console.dir(x => x + 1);
+
+ */
