@@ -3,6 +3,7 @@
 // Variables
 
 const btnScrollTo = document.querySelector('.btn--scroll-to');
+const allSections = document.querySelectorAll('.section');
 const section1 = document.querySelector('#section--1');
 
 const modal = document.querySelector('.modal');
@@ -228,6 +229,29 @@ const stickNavOption = {
 
 const headerObserver = new IntersectionObserver(stickNav, stickNavOption);
 headerObserver.observe(header);
+
+// Reveal Sections on Scroll
+const revealSection = (entries, observer) => {
+  const [entry] = entries;
+
+  if (!entry.isIntersecting) {
+    return;
+  }
+
+  entry.target.classList.remove('section--hidden');
+
+  observer.unobserve(entry.target);
+};
+
+const sectionObserver = new IntersectionObserver(revealSection, {
+  root: null,
+  threshold: 0.15,
+});
+
+allSections.forEach(section => {
+  section.classList.add('section--hidden');
+  sectionObserver.observe(section);
+});
 
 /*
 // Selecting, Creating, and Deleting Elements
