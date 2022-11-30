@@ -169,6 +169,11 @@ nav.addEventListener('mouseout', handleHover.bind({ opacity: 1 }));
 
 // Sticky Navigation
 
+/*
+
+// Should not do this as the window scroll happens all the time
+// and thus is a performance issue in the long run
+
 const initialCoords = section1.getBoundingClientRect();
 
 window.addEventListener('scroll', () => {
@@ -178,6 +183,26 @@ window.addEventListener('scroll', () => {
     nav.classList.remove('sticky');
   }
 });
+
+*/
+
+const obsCallback = entries => {
+  entries.forEach(entry => {
+    console.log(entry);
+  });
+};
+const obsOptions = {
+  // the targe for the Observer i.e. what to observe
+  // (select a element or null for the entry view port of the observer element)
+  root: null,
+  // how much of the root should be in the viewport before the
+  // callback is activated. Its by percentage.
+  // can have multiple thresholds by using an array
+  threshold: [0, 0.2],
+};
+const observer = new IntersectionObserver(obsCallback, obsOptions);
+
+observer.observe(section1);
 
 /*
 // Selecting, Creating, and Deleting Elements
