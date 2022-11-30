@@ -34,8 +34,6 @@ Person.hey = function () {
 };
 Person.hey();
 
-*/
-
 // Prototypes
 
 console.log(Person.prototype);
@@ -61,3 +59,5 @@ console.log(jonas.species, matilda.species);
 
 console.log(jonas.hasOwnProperty('firstName'));
 console.log(jonas.hasOwnProperty('species'));
+
+ */
