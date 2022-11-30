@@ -184,8 +184,6 @@ window.addEventListener('scroll', () => {
   }
 });
 
-*/
-
 const obsCallback = entries => {
   entries.forEach(entry => {
     console.log(entry);
@@ -203,6 +201,8 @@ const obsOptions = {
 const observer = new IntersectionObserver(obsCallback, obsOptions);
 
 observer.observe(section1);
+
+*/
 
 /*
 // Selecting, Creating, and Deleting Elements
