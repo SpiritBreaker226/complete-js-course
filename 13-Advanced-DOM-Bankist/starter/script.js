@@ -14,6 +14,8 @@ const tabs = document.querySelectorAll('.operations__tab');
 const tabsContents = document.querySelectorAll('.operations__content');
 const tabsContainer = document.querySelector('.operations__tab-container');
 
+const nav = document.querySelector('.nav');
+
 // Modal window
 
 const openModal = function (e) {
@@ -136,6 +138,35 @@ tabsContainer.addEventListener('click', e => {
     .classList.add('operations__content--active');
 });
 
+// Menu Fade Animation
+
+const handleHover = function (e) {
+  if (!e.target.classList.contains('nav__link')) {
+    return;
+  }
+
+  const link = e.target;
+  const siblings = link.closest('.nav').querySelectorAll('.nav__link');
+  const logo = link.closest('.nav').querySelector('img');
+
+  siblings.forEach(sibling => {
+    if (sibling !== link) {
+      sibling.style.opacity = this.opacity;
+    }
+  });
+
+  logo.style.opacity = this.opacity;
+};
+
+// Passing "argument" into handler
+// event can only have argument however,
+// you can use this to add to argument
+// and objects to extend this
+
+nav.addEventListener('mouseover', handleHover.bind({ opacity: 0.5 }));
+
+nav.addEventListener('mouseout', handleHover.bind({ opacity: 1 }));
+
 /*
 // Selecting, Creating, and Deleting Elements
 
@@ -153,6 +184,11 @@ const allButtons = document.getElementsByTagName('button');
 console.log(allButtons);
 
 console.log(document.getElementsByClassName('btn'));
+// Tabbed Component
+
+const tabs = document.querySelectorAll('.operations__tab');
+const tabsContents = document.querySelectorAll('.operations__content');
+const tabsContainer = document.querySelector('.operations__tab-container');
 
 // Creating and inserting elements
 const message = document.createElement('div');
