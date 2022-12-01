@@ -484,8 +484,6 @@ const martha = new StudentCl('Martha Jones', 2012, 'Computer Science');
 martha.introduce();
 martha.calcAge();
 
-*/
-
 // Inheritance Between "Classes": Object.create
 
 const PersonProto = {
@@ -515,3 +513,5 @@ const jay = Object.create(StudentProto);
 jay.init('Jay', 2010, 'Computer Science');
 jay.introduce();
 jay.calcAge();
+
+*/
