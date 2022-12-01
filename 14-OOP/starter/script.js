@@ -514,8 +514,6 @@ jay.init('Jay', 2010, 'Computer Science');
 jay.introduce();
 jay.calcAge();
 
-*/
-
 // Encapsulation:
 
 // 1) Public fields
@@ -601,3 +599,5 @@ Account.helper();
 // Chaining
 acc1.deposit(300).deposit(500).withdraw(35).requestLoan(25000).withdraw(4000);
 console.log(acc1.getMovements());
+
+*/
