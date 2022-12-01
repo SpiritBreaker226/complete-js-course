@@ -420,6 +420,8 @@ tesla.brake();
 
 console.log('=============================');
 
+/*
+
 // Inheritance Between "Classes": ES6 Classes
 
 class PersonCl {
@@ -481,3 +483,5 @@ class StudentCl extends PersonCl {
 const martha = new StudentCl('Martha Jones', 2012, 'Computer Science');
 martha.introduce();
 martha.calcAge();
+
+*/
