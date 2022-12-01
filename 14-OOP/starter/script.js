@@ -327,6 +327,8 @@ ford.accelerate();
 
 console.log('=============================');
 
+/*
+
 // Inheritance Between "Classes": Constructor Functions
 
 const Person = function (firstName, birthYear) {
@@ -363,3 +365,5 @@ console.log(mike instanceof Object);
 
 Student.prototype.constructor = Student;
 console.dir(Student.prototype.constructor);
+
+*/
