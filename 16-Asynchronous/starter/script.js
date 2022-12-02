@@ -90,8 +90,6 @@ setTimeout(() => {
   }, 1000);
 }, 1000);
 
-*/
-
 // Consuming Promises
 
 const getCountryData = function (country) {
@@ -107,3 +105,5 @@ const getCountryData = function (country) {
 };
 
 getCountryData('germany');
+
+*/
