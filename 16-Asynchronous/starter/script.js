@@ -41,8 +41,6 @@ getCountryData('canada');
 getCountryData('usa');
 getCountryData('germany');
 
-*/
-
 // Welcome to Callback Hell
 
 const getCountryAndNeighbour = function (country) {
@@ -91,3 +89,5 @@ setTimeout(() => {
     }, 1000);
   }, 1000);
 }, 1000);
+
+*/
