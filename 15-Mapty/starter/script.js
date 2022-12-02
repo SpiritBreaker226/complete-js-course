@@ -163,6 +163,7 @@ class App {
     this.#workouts.push(workout);
 
     // Render workout on map as marker
+    this.#renderWorkoutMarker(workout, type);
 
     // render workout on list
 
@@ -171,20 +172,21 @@ class App {
     inputDuration.value = '';
     inputCadence.value = '';
     inputElevation.value = '';
+  }
 
-    // Display marker
+  #renderWorkoutMarker({ coords, distance }, type) {
     const popup = L.popup({
       maxWidth: 250,
       minWidth: 100,
       autoClose: false,
       closeOnClick: false,
-      className: 'running-popup',
+      className: `${type}-popup`,
     });
 
     L.marker(coords)
       .addTo(this.#map)
       .bindPopup(popup)
-      .setPopupContent('Workout')
+      .setPopupContent(`${distance}`)
       .openPopup();
   }
 }
