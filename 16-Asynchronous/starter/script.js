@@ -179,8 +179,6 @@ const getCountryData = function (country) {
 
 getCountryData('usa');
 
-*/
-
 // Throwing Errors Manually
 
 const getCountryData = function (country) {
@@ -214,3 +212,5 @@ btn.addEventListener('click', function () {
 });
 
 getCountryData('australia');
+
+*/
