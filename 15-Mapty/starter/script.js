@@ -71,6 +71,7 @@ class Cycling extends Workout {
 // Application AArchitecture
 class App {
   #map;
+  #mapZoomLevel = 13;
   #mapEvent;
   #workouts = [];
 
@@ -81,6 +82,7 @@ class App {
 
     form.addEventListener('submit', this.#newWorkout.bind(this));
     inputType.addEventListener('change', this.#toggleElevationField);
+    containerWorkouts.addEventListener('click', this.#moveToPopUp.bind(this));
   }
 
   #getPosition() {
@@ -102,7 +104,7 @@ class App {
     // L is the namespace for LeafletJS
     // As LeafletJS is loading its code into the global object of the application
     // so other JavaScript files can access it.
-    this.#map = L.map('map').setView(coords, 13);
+    this.#map = L.map('map').setView(coords, this.#mapZoomLevel);
 
     // see for more details https://leafletjs.com/reference.html
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -262,6 +264,25 @@ class App {
       .bindPopup(popup)
       .setPopupContent(`${type === 'running' ? '🏃‍♂️' : '🚴‍♀️'} ${description}`)
       .openPopup();
+  }
+
+  #moveToPopUp(e) {
+    const workoutEl = e.target.closest('.workout');
+
+    if (!workoutEl) {
+      return;
+    }
+
+    const workout = this.#workouts.find(
+      workout => workout.id === workoutEl.dataset.id
+    );
+
+    this.#map.setView(workout.coords, this.#mapZoomLevel, {
+      animate: true,
+      pan: {
+        duration: 1,
+      },
+    });
   }
 }
 
