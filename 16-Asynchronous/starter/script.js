@@ -130,8 +130,6 @@ const getCountryData = function (country) {
 
 getCountryData('germany');
 
-*/
-
 // Chaining and Handling Rejected Promises
 
 const getCountryData = function (country) {
@@ -172,3 +170,5 @@ const getCountryData = function (country) {
 };
 
 getCountryData('usa');
+
+*/
