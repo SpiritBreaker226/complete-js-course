@@ -82,12 +82,19 @@ class App {
 
   constructor() {
     this.#getPosition();
+    this.#getLocalStorage();
 
     // handle events
 
     form.addEventListener('submit', this.#newWorkout.bind(this));
     inputType.addEventListener('change', this.#toggleElevationField);
     containerWorkouts.addEventListener('click', this.#moveToPopUp.bind(this));
+  }
+
+  reset() {
+    localStorage.removeItem('workouts');
+
+    location.reload();
   }
 
   #getPosition() {
@@ -119,6 +126,13 @@ class App {
 
     // handling clicks on map
     this.#map.on('click', this.#showForm.bind(this));
+
+    // the loading of markers can only work when the map is loaded
+    // since the map is not loaded when we load the data from the local storage
+    // it causes a error
+    this.#workouts.forEach(workout => {
+      this.#renderWorkoutMarker(workout);
+    });
   }
 
   #showForm(mapE) {
@@ -203,6 +217,9 @@ class App {
 
     // hide form & clear inputs
     this.#hideForm();
+
+    // set local storage for all workouts
+    this.#setLocalStorage();
   }
 
   #renderWorkout(workout) {
@@ -290,6 +307,24 @@ class App {
     });
 
     workout.click();
+  }
+
+  #setLocalStorage() {
+    localStorage.setItem('workouts', JSON.stringify(this.#workouts));
+  }
+
+  #getLocalStorage() {
+    const data = JSON.parse(localStorage.getItem('workouts'));
+
+    if (!data) {
+      return;
+    }
+
+    this.#workouts = data;
+
+    this.#workouts.forEach(workout => {
+      this.#renderWorkout(workout);
+    });
   }
 }
 
