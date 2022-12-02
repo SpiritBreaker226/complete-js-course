@@ -118,7 +118,46 @@ class App {
   #newWorkout(e) {
     e.preventDefault();
 
-    // clear inputs
+    const validInputs = (...inputs) =>
+      inputs.every(input => Number.isFinite(input));
+    const allPositive = (...inputs) => inputs.every(input => input > 0);
+
+    // get data from form
+    const type = inputType.value;
+    const distance = +inputDistance.value;
+    const duration = +inputDuration.value;
+
+    // if workout running create running object
+    if (type === 'running') {
+      const cadence = +inputCadence.value;
+
+      if (
+        !validInputs(distance, duration, cadence) ||
+        !allPositive(distance, duration, cadence)
+      ) {
+        return alert('Inputs have to be positive numbers!');
+      }
+    }
+
+    // if workout cycling create cycling object
+    if (type === 'cycling') {
+      const elevation = +inputElevation.value;
+
+      if (
+        !validInputs(distance, duration, elevation) ||
+        !allPositive(distance, duration)
+      ) {
+        return alert('Inputs have to be positive numbers!');
+      }
+    }
+
+    // Add new object to workout array
+
+    // Render workout on map as marker
+
+    // render workout on list
+
+    // hide form & clear inputs
     inputDistance.value = '';
     inputDuration.value = '';
     inputCadence.value = '';
