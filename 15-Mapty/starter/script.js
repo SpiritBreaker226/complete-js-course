@@ -123,6 +123,20 @@ class App {
     this.#mapEvent = mapE;
   }
 
+  #hideForm() {
+    form.style.display = 'none';
+    form.classList.add('hidden');
+
+    setTimeout(() => {
+      form.style.display = 'grid';
+    }, 1000);
+
+    inputDistance.value = '';
+    inputDuration.value = '';
+    inputCadence.value = '';
+    inputElevation.value = '';
+  }
+
   #toggleElevationField() {
     inputElevation.closest('.form__row').classList.toggle('form__row--hidden');
     inputCadence.closest('.form__row').classList.toggle('form__row--hidden');
@@ -181,10 +195,7 @@ class App {
     this.#renderWorkout(workout);
 
     // hide form & clear inputs
-    inputDistance.value = '';
-    inputDuration.value = '';
-    inputCadence.value = '';
-    inputElevation.value = '';
+    this.#hideForm();
   }
 
   #renderWorkout(workout) {
