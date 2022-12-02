@@ -248,7 +248,7 @@ class App {
     form.insertAdjacentHTML('afterend', html);
   }
 
-  #renderWorkoutMarker({ coords, distance, type }) {
+  #renderWorkoutMarker({ coords, description, type }) {
     const popup = L.popup({
       maxWidth: 250,
       minWidth: 100,
@@ -260,7 +260,7 @@ class App {
     L.marker(coords)
       .addTo(this.#map)
       .bindPopup(popup)
-      .setPopupContent(`${distance}`)
+      .setPopupContent(`${type === 'running' ? '🏃‍♂️' : '🚴‍♀️'} ${description}`)
       .openPopup();
   }
 }
