@@ -306,7 +306,11 @@ class App {
       },
     });
 
-    workout.click();
+    // Disable the Workout public method when the object is loaded from local
+    // storage. It is no longer a prototype object but an ordinary object. As a
+    // result, any instance of public methods is no longer accessible. To fix this,
+    // we will need to recreate the prototype object using `Object.create`.
+    // workout.click();
   }
 
   #setLocalStorage() {
