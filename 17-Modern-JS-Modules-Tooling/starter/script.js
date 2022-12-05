@@ -48,8 +48,6 @@ console.log(lastPost);
 const lastPost2 = await getLastPost();
 console.log(lastPost2);
 
-*/
-
 // The Module Pattern
 
 const ShoppingCart2 = (function () {
@@ -81,3 +79,5 @@ ShoppingCart2.addToCart('apple', 4);
 ShoppingCart2.addToCart('pizza', 2);
 console.log(ShoppingCart2);
 console.log(ShoppingCart2.shippingCost);
+
+*/
