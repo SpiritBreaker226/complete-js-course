@@ -93,8 +93,6 @@ export.addTocart = function (product, quantity) {
 // Import
 const { addTocart } = require('./shoppingCart.js');
 
-*/
-
 // Introduction to NPM
 
 // import cloneDeep from './node_modules/lodash-es/cloneDeep.js';
@@ -139,3 +137,5 @@ import 'core-js/stable';
 
 // Polifilling async functions
 import 'regenerator-runtime/runtime';
+
+*/
