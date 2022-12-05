@@ -24,8 +24,6 @@ add('apples', 4);
 
 console.log(cart);
 
-*/
-
 // Top-Level Await (ES2022)
 
 // console.log('Start fetching');
@@ -49,3 +47,5 @@ console.log(lastPost);
 
 const lastPost2 = await getLastPost();
 console.log(lastPost2);
+
+*/
