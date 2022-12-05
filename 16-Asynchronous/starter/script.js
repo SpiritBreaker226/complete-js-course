@@ -466,6 +466,8 @@ createImage('./img/img-1.jpg')
 
 console.log('=============================');
 
+/*
+
 // Consuming Promises with Async/Await
 
 const getPosition = function () {
@@ -520,3 +522,5 @@ console.log('FIRST');
 // } catch (err) {
 //   alert(err.message);
 // }
+
+*/
