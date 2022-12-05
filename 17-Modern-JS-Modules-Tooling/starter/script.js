@@ -1,3 +1,5 @@
+/*
+
 // Exporting and Importing in ES6 Modules
 
 // Importing module
@@ -21,3 +23,5 @@ add('bread', 5);
 add('apples', 4);
 
 console.log(cart);
+
+*/
