@@ -108,7 +108,8 @@ body {
   cursor: pointer;
 }
 
-.images {
+.images,
+.imagesPromise {
   display: flex;
 }
 
@@ -118,7 +119,8 @@ body {
   margin: 4rem;
 }
 
-.images img.parallel {
+.imagesPromise img.parallel {
+  display: block;
   width: 40rem;
   margin: 2rem;
   border: 3rem solid white;

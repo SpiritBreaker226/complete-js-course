@@ -658,3 +658,100 @@ Promise.any([
   .catch(err => console.error(err));
 
 */
+
+// Coding Challenge #3
+
+/*
+PART 1
+Write an async function 'loadNPause' that recreates Coding Challenge #2, this time using async/await (only the part where the promise is consumed). Compare the two versions, think about the big differences, and see which one you like more.
+Don't forget to test the error handler, and to set the network speed to 'Fast 3G' in the dev tools Network tab.
+
+PART 2
+1. Create an async function 'loadAll' that receives an array of image paths 'imgArr';
+2. Use .map to loop over the array, to load all the images with the 'createImage' function (call the resulting array 'imgs')
+3. Check out the 'imgs' array in the console! Is it like you expected?
+4. Use a promise combinator function to actually get the images from the array 😉
+5. Add the 'paralell' class to all the images (it has some CSS styles).
+
+TEST DATA: ['img/img-1.jpg', 'img/img-2.jpg', 'img/img-3.jpg']. To test, turn off the 'loadNPause' function.
+
+GOOD LUCK 😀
+*/
+
+console.log('Coding Challenge #3');
+
+const imagePromiseContainer = document.querySelector('.imagesPromise');
+
+const waitAsync = seconds =>
+  new Promise(resolve => setTimeout(resolve, seconds * 1000));
+
+const createImageAsync = imgPath =>
+  new Promise((resolve, reject) => {
+    const imgEl = document.createElement('img');
+    imgEl.src = imgPath;
+
+    imgEl.addEventListener('load', () => {
+      imagePromiseContainer.append(imgEl);
+
+      resolve(imgEl);
+    });
+
+    imgEl.addEventListener('error', () => {
+      reject(`Image ${imgPath} not found`);
+    });
+  });
+
+const loadNPause = async () => {
+  try {
+    let image = await createImageAsync('./img/img-1.jpg');
+
+    await waitAsync(2);
+
+    image.style.display = 'none';
+
+    image = await createImageAsync('./img/img-2.jpg');
+
+    await waitAsync(2);
+
+    image.style.display = 'none';
+
+    image = await createImageAsync('./img/img-3.jpg');
+
+    await waitAsync(2);
+
+    image.style.display = 'none';
+
+    image = await createImageAsync('./img/img-4.jpg');
+
+    console.log('loadNPause: should work');
+  } catch (error) {
+    console.log('loadNPause: should fail');
+
+    console.error(`${error} 💥💥💥`);
+
+    throw error;
+  }
+};
+
+loadNPause();
+
+const loadAll = async imgArr => {
+  const imagePromises = imgArr.map(
+    // to so that you can use await in the  ES6+ loops
+    // please not this is not need since createImageAsync is already
+    // returning a promise
+    async image => await createImageAsync(image)
+  );
+
+  console.log('load all images in Promises', imagePromises);
+
+  const imgEls = await Promise.all(imagePromises);
+
+  console.log('load all images', imgEls);
+
+  imgEls.forEach(imgEl => imgEl.classList.add('parallel'));
+};
+
+loadAll(['img/img-1.jpg', 'img/img-2.jpg', 'img/img-3.jpg']);
+
+console.log('=============================');
