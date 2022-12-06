@@ -32,7 +32,7 @@ const renderSpinner = parentEl => {
   parentEl.insertAdjacentHTML('afterbegin', markUp);
 };
 
-const showRecipe = async () => {
+const controlRecipes = async () => {
   try {
     const recipeId = window.location.hash.slice(1);
 
@@ -61,5 +61,5 @@ const showRecipe = async () => {
 };
 
 ['hashchange', 'load'].forEach(event =>
-  window.addEventListener(event, showRecipe)
+  window.addEventListener(event, controlRecipes)
 );
