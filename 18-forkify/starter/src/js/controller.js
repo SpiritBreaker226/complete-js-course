@@ -2,6 +2,7 @@ import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 
 import icons from 'url:../img/icons.svg';
+import * as model from './model';
 
 const recipeContainer = document.querySelector('.recipe');
 
@@ -40,31 +41,9 @@ const showRecipe = async () => {
 
     renderSpinner(recipeContainer);
 
-    const res = await fetch(
-      `https://forkify-api.herokuapp.com/api/v2/recipes/${recipeId}`
-    );
+    await model.loadRecipe(recipeId);
 
-    const data = await res.json();
-
-    if (!res.ok) {
-      throw new Error(`${data.message} (${res.status})`);
-    }
-
-    const {
-      data: { recipe: apiRecipe },
-    } = data;
-    const recipe = {
-      id: apiRecipe.id,
-      title: apiRecipe.title,
-      publisher: apiRecipe.publisher,
-      sourceUrl: apiRecipe.source_url,
-      image: apiRecipe.image_url,
-      servings: apiRecipe.servings,
-      cookingTime: apiRecipe.cooking_time,
-      ingredients: apiRecipe.ingredients,
-    };
-
-    console.log('Recipe', recipe);
+    const { recipe } = model.state;
 
     // TODO: add errors
     /*`<div class="error">
