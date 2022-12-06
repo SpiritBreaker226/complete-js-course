@@ -14,6 +14,19 @@ class RecipeView {
     );
   }
 
+  renderSpinner() {
+    const markUp = `
+      <div class="spinner">
+        <svg>
+          <use href="${icons}#icon-loader"></use>
+        </svg>
+      </div>
+    `;
+
+    this.#parentElement.innerHTML = '';
+    this.#parentElement.insertAdjacentHTML('afterbegin', markUp);
+  }
+
   #clear() {
     this.#parentElement.innerHTML = '';
   }
