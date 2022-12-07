@@ -118,7 +118,9 @@ export const updateRecipe = async newRecipe => {
   const ingredients = Object.entries(newRecipe)
     .filter(entry => entry[0].startsWith('ingredient') && entry[1] !== '')
     .map(([_, ingredient]) => {
-      const ingredientArray = ingredient.replaceAll(' ', '').split(',');
+      const ingredientArray = ingredient
+        .split(',')
+        .map(details => details.trim());
 
       if (ingredientArray.length !== 3) {
         throw new Error(
