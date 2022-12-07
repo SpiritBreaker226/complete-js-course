@@ -3,9 +3,10 @@ import 'regenerator-runtime/runtime';
 
 import * as model from './model';
 import paginationView from './views/paginationView';
-import recipeView from './views/RecipeView';
-import resultsView from './views/ResultsView';
-import searchView from './views/SearchView';
+import recipeView from './views/recipeView';
+import resultsView from './views/resultsView';
+import searchView from './views/searchView';
+import bookmarksView from './views/bookmarksView';
 
 if (module.hot) {
   module.hot.accept;
@@ -22,6 +23,7 @@ const controlRecipes = async () => {
     recipeView.renderSpinner();
 
     resultsView.update(model.getSearchResultsPage());
+    bookmarksView.update([...model.state.bookmarks.values()]);
 
     await model.loadRecipe(recipeId);
 
@@ -73,6 +75,8 @@ const controlAddBookmark = () => {
   }
 
   recipeView.update(model.state.recipe);
+
+  bookmarksView.render([...model.state.bookmarks.values()]);
 };
 
 const init = () => {
