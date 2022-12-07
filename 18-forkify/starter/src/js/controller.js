@@ -6,9 +6,9 @@ import recipeView from './views/RecipeView';
 import resultsView from './views/ResultsView';
 import searchView from './views/SearchView';
 
-// https://forkify-api.herokuapp.com/v2
-
-///////////////////////////////////////
+if (module.hot) {
+  module.hot.accept;
+}
 
 const controlRecipes = async () => {
   try {
