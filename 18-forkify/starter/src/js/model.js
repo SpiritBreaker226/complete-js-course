@@ -51,3 +51,17 @@ export const getSearchResultsPage = (page = state.search.page) => {
 
   return state.search.results.slice(start, end);
 };
+
+export const updateServings = newServings => {
+  state.recipe.ingredients = state.recipe.ingredients.map(ingredient => {
+    if (!ingredient.quantity) {
+      return ingredient;
+    }
+
+    return {
+      ...ingredient,
+      quantity: (ingredient.quantity * newServings) / state.recipe.servings,
+    };
+  });
+  state.recipe.servings = newServings;
+};
