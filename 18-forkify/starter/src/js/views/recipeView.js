@@ -4,6 +4,7 @@ import icons from 'url:../../img/icons.svg';
 
 class RecipeView {
   #parentElement = document.querySelector('.recipe');
+  #errorMessage = 'We could not find that recipe. Please try another one!';
   #data;
 
   render(data) {
@@ -27,6 +28,20 @@ class RecipeView {
 
     this.#parentElement.innerHTML = '';
     this.#parentElement.insertAdjacentHTML('afterbegin', markUp);
+  }
+
+  renderError(message = this.#errorMessage) {
+    const markup = `<div class="error">
+      <div>
+        <svg>
+          <use href="${icons}#icon-alert-triangle"></use>
+        </svg>
+      </div>
+      <p>${message}</p>
+    </div>`;
+
+    this.#clear();
+    this.#parentElement.insertAdjacentHTML('afterbegin', markup);
   }
 
   addHandlerRender(handler) {
