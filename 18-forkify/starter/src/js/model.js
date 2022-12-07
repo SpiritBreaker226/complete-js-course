@@ -1,5 +1,5 @@
 import { API_KEY, API_URL, RESULTS_PER_PAGE } from './config';
-import { getJSON, sendJSON } from './helpers';
+import { AJAX } from './helpers';
 
 export const state = {
   recipe: {},
@@ -31,7 +31,7 @@ const createRecipesObject = data => {
 };
 
 export const loadRecipe = async recipeId => {
-  const data = await getJSON(`${API_URL}${recipeId}`);
+  const data = await AJAX(`${API_URL}${recipeId}`);
 
   state.recipe = createRecipesObject(data);
 
@@ -44,7 +44,7 @@ export const loadSearchResults = async query => {
   state.search.page = 1;
   state.search.results = [];
 
-  const data = await getJSON(`${API_URL}?search=${query}`);
+  const data = await AJAX(`${API_URL}?search=${query}`);
 
   state.search.results = data.data.recipes.map(recipe => ({
     id: recipe.id,
@@ -131,7 +131,7 @@ export const updateRecipe = async newRecipe => {
       return { quantity: quantity ? +quantity : null, unit, description };
     });
 
-  const recipe = await sendJSON(`${API_URL}?key=${API_KEY}`, {
+  const recipe = await AJAX(`${API_URL}?key=${API_KEY}`, {
     title: newRecipe.title,
     publisher: newRecipe.publisher,
     source_url: newRecipe.sourceUrl,
