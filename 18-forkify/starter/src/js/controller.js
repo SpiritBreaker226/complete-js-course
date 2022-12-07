@@ -32,6 +32,8 @@ const controlRecipes = async () => {
     recipeView.render(model.state.recipe);
   } catch (error) {
     recipeView.renderError();
+
+    throw error;
   }
 };
 
@@ -51,6 +53,8 @@ const controlSearchResults = async () => {
     paginationView.render(model.state.search);
   } catch (error) {
     resultsView.renderError();
+
+    throw error;
   }
 };
 
@@ -106,16 +110,22 @@ const controlAddRecipe = async newRecipe => {
     }, TIMEOUT_MODEL_CLOSE_SECONDS * 1000);
   } catch (error) {
     addRecipeView.renderError(error);
+
+    throw error;
   }
 };
 
 const init = () => {
-  bookmarksView.addHandlerRender(controlBookmarks);
-  recipeView.addHandlerRender(controlRecipes);
-  recipeView.addHandlerUpdateServings(controlServings);
-  recipeView.addHandlerAddBookmark(controlAddBookmark);
-  searchView.addHandlerSearch(controlSearchResults);
-  paginationView.addHandlerClick(controlPagination);
-  addRecipeView.addHandlerUpload(controlAddRecipe);
+  try {
+    bookmarksView.addHandlerRender(controlBookmarks);
+    recipeView.addHandlerRender(controlRecipes);
+    recipeView.addHandlerUpdateServings(controlServings);
+    recipeView.addHandlerAddBookmark(controlAddBookmark);
+    searchView.addHandlerSearch(controlSearchResults);
+    paginationView.addHandlerClick(controlPagination);
+    addRecipeView.addHandlerUpload(controlAddRecipe);
+  } catch (error) {
+    console.error(`${error} 💥💥💥`);
+  }
 };
 init();
