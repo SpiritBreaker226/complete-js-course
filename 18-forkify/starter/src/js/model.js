@@ -9,7 +9,7 @@ export const state = {
     resultsPerPage: RESULTS_PER_PAGE,
     page: 1,
   },
-  bookmarks: [],
+  bookmarks: new Map(),
 };
 
 export const loadRecipe = async recipeId => {
@@ -30,9 +30,7 @@ export const loadRecipe = async recipeId => {
     ingredients: apiRecipe.ingredients,
   };
 
-  state.recipe.isBookmarked = state.bookmarks.some(
-    bookmark => bookmark.id === recipeId
-  );
+  state.recipe.isBookmarked = state.bookmarks.has(recipeId);
 };
 
 export const loadSearchResults = async query => {
@@ -76,7 +74,7 @@ export const updateServings = newServings => {
 
 export const addBookmark = recipe => {
   // adds the bookmark
-  state.bookmarks.push(recipe);
+  state.bookmarks.set(state.recipe.id, recipe);
 
   // mark current recipe as bookmark
   if (recipe.id === state.recipe.id) {
@@ -86,7 +84,7 @@ export const addBookmark = recipe => {
 
 export const deleteBookmark = id => {
   // removes the bookmark from bookmarks
-  state.bookmarks = state.bookmarks.filter(bookmark => id !== bookmark.id);
+  state.bookmarks.delete(id);
 
   // remove mark current recipe as bookmark
   if (id === state.recipe.id) {
