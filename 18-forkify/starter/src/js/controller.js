@@ -2,6 +2,7 @@ import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 
 import * as model from './model';
+import { TIMEOUT_MODEL_CLOSE_SECONDS } from './config';
 import paginationView from './views/paginationView';
 import recipeView from './views/recipeView';
 import addRecipeView from './views/addRecipeView';
@@ -86,7 +87,23 @@ const controlBookmarks = () => {
 
 const controlAddRecipe = async newRecipe => {
   try {
+    addRecipeView.renderSpinner();
+
     await model.updateRecipe(newRecipe);
+
+    recipeView.render(model.state.recipe);
+
+    // successfully message
+    addRecipeView.renderMessage();
+    bookmarksView.render([...model.state.bookmarks.values()]);
+
+    // Change ID in URL
+    window.history.pushState(null, '', `#${model.state.recipe.id}`);
+
+    // Close model after X seconds
+    setTimeout(() => {
+      addRecipeView.toggleWindow();
+    }, TIMEOUT_MODEL_CLOSE_SECONDS * 1000);
   } catch (error) {
     addRecipeView.renderError(error);
   }
