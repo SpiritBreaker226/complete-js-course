@@ -108,6 +108,34 @@ const clearBookmarks = () => {
   localStorage.removeItem('bookmarks');
 };
 
+export const updateRecipe = async newRecipe => {
+  const ingredients = Object.entries(newRecipe)
+    .filter(entry => entry[0].startsWith('ingredient') && entry[1] !== '')
+    .map(([_, ingredient]) => {
+      const ingredientArray = ingredient.replaceAll(' ', '').split(',');
+
+      if (ingredientArray.length !== 3) {
+        throw new Error(
+          'Wrong ingredient format! Please use the correct format :)'
+        );
+      }
+
+      const [quantity, unit, description] = ingredientArray;
+
+      return { quantity: quantity ? +quantity : null, unit, description };
+    });
+
+  console.log({
+    title: newRecipe.title,
+    publisher: newRecipe.publisher,
+    source_url: newRecipe.sourceUrl,
+    image_url: newRecipe.image,
+    servings: +newRecipe.servings,
+    cooking_time: +newRecipe.cookingTime,
+    ingredients,
+  });
+};
+
 const init = () => {
   const storedBookmarks = localStorage.getItem('bookmarks');
 
