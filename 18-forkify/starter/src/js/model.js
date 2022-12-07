@@ -31,7 +31,10 @@ export const loadRecipe = async recipeId => {
 };
 
 export const loadSearchResults = async query => {
+  // resets search
   state.search.query = query;
+  state.search.page = 1;
+  state.search.results = [];
 
   const data = await getJSON(`${API_URL}?search=${query}`);
 
