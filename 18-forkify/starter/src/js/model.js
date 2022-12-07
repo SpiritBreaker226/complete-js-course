@@ -31,7 +31,7 @@ const createRecipesObject = data => {
 };
 
 export const loadRecipe = async recipeId => {
-  const data = await AJAX(`${API_URL}${recipeId}`);
+  const data = await AJAX(`${API_URL}${recipeId}?key=${API_KEY}`);
 
   state.recipe = createRecipesObject(data);
 
@@ -44,7 +44,7 @@ export const loadSearchResults = async query => {
   state.search.page = 1;
   state.search.results = [];
 
-  const data = await AJAX(`${API_URL}?search=${query}`);
+  const data = await AJAX(`${API_URL}?search=${query}&key=${API_KEY}`);
 
   state.search.results = data.data.recipes.map(recipe => ({
     id: recipe.id,
